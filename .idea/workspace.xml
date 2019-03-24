@@ -1,66 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a363a1f3-1435-4399-89e5-37c2ee39539d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/protractor.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/src/app.e2e-spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/src/app.po.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/tsconfig.e2e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/login/login.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/login/login.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/login/login.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/login/login.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/navbar/navbar.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/navbar/navbar.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/navbar/navbar.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/navbar/navbar.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/register/register.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/register/register.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/register/register.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/register/register.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/browserslist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.prod.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/config.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/css/animation.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/css/fontello-codes.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/css/fontello-embedded.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/css/fontello-ie7-codes.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/css/fontello-ie7.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/css/fontello.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/demo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/font/fontello.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/font/fontello.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/font/fontello.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/font/fontello.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fontello/font/fontello.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/karma.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polyfills.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tsconfig.app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tsconfig.spec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tslint.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" />
-    </list>
+    <list default="true" id="a363a1f3-1435-4399-89e5-37c2ee39539d" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -71,11 +12,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docker-compose.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
+            <state relative-caret-position="405">
+              <caret line="58" column="38" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="5" selection-start-column="5" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -89,6 +39,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -113,17 +64,6 @@
             <path>
               <item name="LoginSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="LoginSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LoginSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LoginSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LoginSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LoginSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -187,12 +127,12 @@
       <option name="presentableId" value="Default" />
       <updated>1553423997837</updated>
       <workItem from="1553423999097" duration="1201000" />
-      <workItem from="1553426931286" duration="337000" />
+      <workItem from="1553426931286" duration="475000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1538000" />
+    <option name="totallyTimeSpent" value="1676000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -226,8 +166,15 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
+        <state relative-caret-position="405">
+          <caret line="58" column="38" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
         </state>
       </provider>
     </entry>
