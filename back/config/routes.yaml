@@ -1,3 +1,7 @@
 index:
     path: /api
     controller: App\Controller\HomeController::index
+
+user_verify:
+    path: /user/verify
+    controller: App\Controller\UserController::verify
