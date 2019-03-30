@@ -54,7 +54,9 @@ class UserExceptionSubscriber implements EventSubscriberInterface
             $response = new JsonResponse();
             $response->setStatusCode(JsonResponse::HTTP_BAD_REQUEST);
             $response->setData([
-                'authenticated' => false,
+                'auth' => [
+                    'success' => false
+                ],
                 'error_message' => $exception->getMessage()
             ]);
 

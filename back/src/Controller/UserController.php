@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Security\Token\JsonWebToken;
 use App\User\Exception\UserNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,11 +18,16 @@ class UserController extends AbstractController
     private $userRepository;
 
     private $passwordEncoder;
+    /**
+     * @var JsonWebToken
+     */
+    private $jwt;
 
-    public function __construct(UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder, JsonWebToken $jwt)
     {
         $this->userRepository = $userRepository;
         $this->passwordEncoder = $passwordEncoder;
+        $this->jwt = $jwt;
     }
 
 
@@ -46,6 +51,15 @@ class UserController extends AbstractController
             throw new UserNotFoundException();
         }
 
-        return $this->json(['user' => $user, 'authenticated' => true]);
+        $tokenId = base64_encode(openssl_random_pseudo_bytes(32));
+        $token = $this->jwt->encode($tokenId, ['test' => 123]);
+
+        return $this->json([
+            'user' => $user,
+            'auth' => [
+                'success' => true,
+                'token' => $token
+            ]
+        ]);
     }
 }
