@@ -29,7 +29,7 @@ class JsonWebToken
         $this->serverName = $serverName;
     }
 
-    public function encode(string $tokenId, $data, int $expire = self::DEFAULT_LIVE_TIME, int $notBefore = 0)
+    public function encode(string $tokenId, $data, int $expire = self::DEFAULT_LIVE_TIME, int $notBefore = 0): string
     {
         $iat = time();
         $nbf = $iat + $notBefore;

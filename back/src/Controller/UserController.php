@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
+use App\Security\Auth\UserAuthenticator;
 use App\Security\Token\JsonWebToken;
 use App\User\Exception\UserNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,21 +14,18 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class UserController extends AbstractController
 {
     /**
-     * @var UserRepository
-     */
-    private $userRepository;
-
-    private $passwordEncoder;
-    /**
      * @var JsonWebToken
      */
     private $jwt;
+    /**
+     * @var UserAuthenticator
+     */
+    private $userAuth;
 
-    public function __construct(UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder, JsonWebToken $jwt)
+    public function __construct(UserAuthenticator $userAuth, JsonWebToken $jwt)
     {
-        $this->userRepository = $userRepository;
-        $this->passwordEncoder = $passwordEncoder;
         $this->jwt = $jwt;
+        $this->userAuth = $userAuth;
     }
 
 
@@ -38,16 +36,9 @@ class UserController extends AbstractController
         $username = isset($data->username) ? $data->username : null;
         $password = isset($data->password) ? $data->password : null;
 
-        /** @var UserInterface $user */
-        $user = $this->userRepository->findOneBy(['username' => $username]);
+        $user = $this->userAuth->verify($username, $password);
 
-        if (!$user) {
-            throw new UserNotFoundException();
-        }
-
-        $auth = $this->passwordEncoder->isPasswordValid($user, $password);
-
-        if(!$auth) {
+        if(!$user) {
             throw new UserNotFoundException();
         }
 
