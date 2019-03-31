@@ -43,7 +43,7 @@ class UserController extends AbstractController
         }
 
         $tokenId = base64_encode(openssl_random_pseudo_bytes(32));
-        $token = $this->jwt->encode($tokenId, ['test' => 123]);
+        $token = $this->jwt->encode($tokenId, ['apiToken' => $user->getApiToken()]);
 
         return $this->json([
             'user' => $user,
