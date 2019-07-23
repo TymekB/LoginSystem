@@ -39,18 +39,16 @@ class UserController extends AbstractController
         $user = $this->userAuth->verify($username, $password);
 
         if(!$user) {
-            throw new UserNotFoundException();
+            return $this->json(['success' => false, 'message' => 'Wrong credentials']);
         }
 
         $tokenId = base64_encode(openssl_random_pseudo_bytes(32));
         $token = $this->jwt->encode($tokenId, ['apiToken' => $user->getApiToken()]);
 
         return $this->json([
+            'success' => true,
             'user' => $user,
-            'auth' => [
-                'success' => true,
-                'token' => $token
-            ]
+            'token' => $token
         ]);
     }
 }

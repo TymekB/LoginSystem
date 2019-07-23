@@ -30,7 +30,7 @@ class UserAuthenticator
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    public function verify(string $username, string $password)
+    public function verify(?string $username, ?string $password)
     {
         /** @var User $user */
         $user = $this->userRepository->findOneBy(['username' => $username]);

@@ -3,5 +3,5 @@ index:
     controller: App\Controller\HomeController::index
 
 user_verify:
-    path: /user/verify
+    path: /api/user/verify
     controller: App\Controller\UserController::verify

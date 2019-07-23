@@ -8,23 +8,26 @@
                 <h2>Sign in</h2>
                 <hr>
 
-                <form>
+                <form (submit)="onSubmit()">
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="icon-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" [(ngModel)]="username" name="username" aria-describedby="basic-addon1">
                     </div>
 
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon2"><i class="icon-key"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
+                        <input type="password" class="form-control" placeholder="Password" aria-label="Password" [(ngModel)]="password" name="password" aria-describedby="basic-addon2">
                     </div>
 
-                    <button class="btn btn-primary">Login</button>
+                    <div class="form-group">
+                        <button class="btn btn-primary">Login</button>
+                    </div>
 
+                    <flash-messages></flash-messages>
                 </form>
             </div>
         </div>

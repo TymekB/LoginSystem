@@ -6,12 +6,17 @@ import {AppComponent} from './app.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+import {FlashMessagesModule} from 'angular2-flash-messages';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full'},
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent }
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
+    {path: 'login', component: LoginComponent},
+    {path: 'register', component: RegisterComponent},
+    {path: 'dashboard', component: DashboardComponent}
 ];
 
 @NgModule({
@@ -19,11 +24,15 @@ const routes: Routes = [
         AppComponent,
         NavbarComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        DashboardComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        FlashMessagesModule.forRoot(),
         RouterModule.forRoot(routes)
     ],
     providers: [],
