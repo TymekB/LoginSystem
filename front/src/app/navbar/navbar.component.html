@@ -16,7 +16,7 @@
 
             <ng-template [ngIf]="isUserLoggedIn">
                 <li class="nav-item">
-                    <a class="nav-link icon-login" routerLink="/login" routerLinkActive="active">Logout</a>
+                    <a class="nav-link icon-login" href="#" (click)="onLogoutClick()">Logout</a>
                 </li>
             </ng-template>
         </ul>
