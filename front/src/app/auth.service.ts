@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {tokenNotExpired} from 'angular2-jwt';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,6 @@ export class AuthService {
 
     private authToken: string;
     private user: object;
-    private isUserLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     constructor(private http: HttpClient) {
     }
@@ -31,7 +31,6 @@ export class AuthService {
 
         this.authToken = token;
         this.user = user;
-        this.isUserLogged.next(true);
 
         localStorage.setItem('id_token', token);
         localStorage.setItem('user', JSON.stringify(user));
@@ -40,15 +39,16 @@ export class AuthService {
     logout() {
         this.authToken = null;
         this.user = null;
-        this.isUserLogged.next(false);
         localStorage.clear();
+    }
+
+    loggedIn() {
+        return tokenNotExpired('id_token');
     }
 
     getUser() {
         return this.user;
     }
-
-    getIsUserLogged() {
-        return this.isUserLogged;
-    }
 }
+
+

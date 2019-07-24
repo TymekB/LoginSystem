@@ -9,14 +9,8 @@ import {AuthService} from '../auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-    isUserLoggedIn: boolean;
-
     constructor(private authService: AuthService, private router: Router) {
 
-        this.authService.getIsUserLogged().subscribe(value => {
-            this.isUserLoggedIn = value;
-            console.log('user logged: ' + value);
-        });
     }
 
     onLogoutClick() {
