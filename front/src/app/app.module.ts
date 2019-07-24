@@ -10,6 +10,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {FlashMessagesModule} from 'angular2-flash-messages';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {AuthGuardService} from './auth-guard.service';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         HttpClientModule,
         FlashMessagesModule.forRoot()
     ],
-    providers: [],
+    providers: [AuthGuardService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
