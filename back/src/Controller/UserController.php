@@ -21,11 +21,16 @@ class UserController extends AbstractController
      * @var UserAuthenticator
      */
     private $userAuth;
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
 
-    public function __construct(UserAuthenticator $userAuth, JsonWebToken $jwt)
+    public function __construct(UserRepository $userRepository, UserAuthenticator $userAuth, JsonWebToken $jwt)
     {
         $this->jwt = $jwt;
         $this->userAuth = $userAuth;
+        $this->userRepository = $userRepository;
     }
 
 
@@ -49,6 +54,15 @@ class UserController extends AbstractController
             'success' => true,
             'user' => $user,
             'token' => $token
+        ]);
+    }
+
+    public function findUsername($username)
+    {
+        $user = $this->userRepository->findBy(['username' => $username]);
+
+        return $this->json([
+            'success' => (bool)$user
         ]);
     }
 }

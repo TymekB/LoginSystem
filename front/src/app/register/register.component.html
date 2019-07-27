@@ -18,16 +18,20 @@
                     </div>
 
                     <div *ngIf="username.touched && !username.valid" class="alert alert-danger">
-                        <div *ngIf="username.errors.required">
+                        <div *ngIf="username.hasError('required')">
                             Username is required.
                         </div>
 
-                        <div *ngIf="username.errors.minlength || username.errors.maxlength">
+                        <div *ngIf="username.hasError('minlength') || username.hasError('maxlength')">
                             Username must be between 4 and 20 characters.
                         </div>
 
-                        <div *ngIf="username.errors.pattern">
+                        <div *ngIf="username.hasError('pattern')">
                             Username cannot contain alphanumeric characters.
+                        </div>
+
+                        <div *ngIf="username.hasError('usernameTaken')">
+                            Username is taken.
                         </div>
                     </div>
 
@@ -86,7 +90,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-success" [disabled]="!registerForm.valid">Create account</button>
+                    <button class="btn btn-success" >Create account</button>
 
                 </form>
             </div>
