@@ -14,4 +14,9 @@ export class UserRepositoryService {
         return this.http.get('http://localhost/api/find/username/' + username);
     }
 
+    findByEmail(email: string) {
+
+        return this.http.get('http://localhost/api/find/email/' + email);
+    }
+
 }

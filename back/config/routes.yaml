@@ -9,5 +9,11 @@ user_verify:
 
 find_username:
     path: /api/find/username/{username}
-    controller: App\Controller\UserController::findUsername
+    controller: App\Controller\UserController::findByUsername
+    methods: [GET]
+
+
+find_email:
+    path: /api/find/email/{email}
+    controller: App\Controller\UserController::findByEmail
     methods: [GET]

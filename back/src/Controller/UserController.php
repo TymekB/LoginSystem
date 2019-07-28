@@ -57,12 +57,23 @@ class UserController extends AbstractController
         ]);
     }
 
-    public function findUsername($username)
+    public function findByUsername($username)
     {
         $user = $this->userRepository->findBy(['username' => $username]);
 
         return $this->json([
+            'user' => ($user) ? $user : null,
             'success' => (bool)$user
+        ]);
+    }
+
+    public function findByEmail($email)
+    {
+        $user = $this->userRepository->findBy(['email' => $email]);
+
+        return $this->json([
+           'user' => ($user) ? $user : null,
+           'success' => (bool)$user
         ]);
     }
 }

@@ -4,6 +4,7 @@ import {User} from '../user';
 import {UniqueUsernameValidator} from '../validator/uniqueUsername.validator';
 import {UserRepositoryService} from '../user-repository.service';
 import {map} from 'rxjs/operators';
+import {UniqueEmailValidator} from '../validator/uniqueEmail.validator';
 
 @Component({
     selector: 'app-register',
@@ -25,7 +26,11 @@ export class RegisterComponent implements OnInit {
                     Validators.maxLength(20),
                     Validators.pattern(/^[a-z0-9]+$/i)
                 ], [UniqueUsernameValidator.createValidator(this.userRepository)]),
-            email: new FormControl(null, [Validators.required, Validators.email]),
+            email: new FormControl(null,
+                [
+                    Validators.required,
+                    Validators.email
+                ], [UniqueEmailValidator.createValidator(this.userRepository)]),
             password: new FormControl(null,
                 [
                     Validators.required,
@@ -39,17 +44,11 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {
 
-        const validator = UniqueUsernameValidator.createValidator(this.userRepository);
-
-        validator(new FormControl('admin')).subscribe(value => console.log(value));
-
-
     }
 
     onSubmit() {
         console.log(this.registerForm.value);
         console.log(this.registerForm.valid);
-        console.log(this.username.errors);
     }
 
     get username() { return this.registerForm.get('username'); }

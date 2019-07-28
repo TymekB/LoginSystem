@@ -44,12 +44,16 @@
                     </div>
 
                     <div *ngIf="email.touched && !email.valid" class="alert alert-danger">
-                        <div *ngIf="email.errors.required">
+                        <div *ngIf="email.hasError('required')">
                             Email is required.
                         </div>
 
-                        <div *ngIf="email.errors.email">
+                        <div *ngIf="email.hasError('email')">
                             Email is not valid.
+                        </div>
+
+                        <div *ngIf="email.hasError('emailTaken')">
+                            Account with this email already exists.
                         </div>
                     </div>
 
@@ -62,11 +66,11 @@
                     </div>
 
                     <div *ngIf="password.touched && !password.valid" class="alert alert-danger">
-                        <div *ngIf="password.errors.required">
+                        <div *ngIf="password.hasError('required')">
                             Password is required.
                         </div>
 
-                        <div *ngIf="password.errors.minlength || password.errors.maxlength">
+                        <div *ngIf="password.hasError('minlength')|| password.hasError('maxlength')">
                             Password must be between 8 and 20 characters.
                         </div>
                     </div>
@@ -81,11 +85,11 @@
 
                     <div *ngIf="repeatPassword.touched && !repeatPassword.valid" class="alert alert-danger">
 
-                        <div *ngIf="repeatPassword.errors.required">
+                        <div *ngIf="repeatPassword.hasError('required')">
                             You must repeat your password
                         </div>
 
-                        <div *ngIf="repeatPassword.errors.pattern">
+                        <div *ngIf="repeatPassword.hasError('pattern')">
                             Password are not the same.
                         </div>
                     </div>
