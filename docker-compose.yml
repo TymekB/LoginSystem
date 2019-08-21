@@ -61,5 +61,5 @@ services:
             - ./front/dist/LoginSystem:/usr/share/nginx/html
         ports:
             - 80:80
-        depends_on:
+        links:
           - apache

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
-import {UserRepositoryService} from '../user-repository.service';
+import {UserRepositoryService} from '../services/user-repository.service';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import 'rxjs-compat/add/operator/map';

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../user';
 import {UniqueUsernameValidator} from '../validator/uniqueUsername.validator';
-import {UserRepositoryService} from '../user-repository.service';
+import {UserRepositoryService} from '../services/user-repository.service';
 import {map} from 'rxjs/operators';
 import {UniqueEmailValidator} from '../validator/uniqueEmail.validator';
 
