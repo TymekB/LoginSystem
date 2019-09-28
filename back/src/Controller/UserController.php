@@ -2,18 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Security\Auth\UserAuthenticator;
 use App\Security\Token\JsonWebToken;
-use App\User\Exception\UserNotFoundException;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 
 class UserController extends AbstractController
 {
