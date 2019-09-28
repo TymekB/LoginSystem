@@ -5,6 +5,7 @@ import {UniqueUsernameValidator} from '../validator/uniqueUsername.validator';
 import {UserRepositoryService} from '../services/user-repository.service';
 import {map} from 'rxjs/operators';
 import {UniqueEmailValidator} from '../validator/uniqueEmail.validator';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
     selector: 'app-register',
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     user: User = new User();
 
-    constructor(private userRepository: UserRepositoryService) {
+    constructor(private userRepository: UserRepositoryService, private http: HttpClient) {
 
         this.registerForm = new FormGroup({
             username: new FormControl(null,
@@ -49,6 +50,16 @@ export class RegisterComponent implements OnInit {
     onSubmit() {
         console.log(this.registerForm.value);
         console.log(this.registerForm.valid);
+
+        const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json'
+            })
+        };
+
+        this.http.post('http://localhost/api/user/register', this.registerForm.value, httpOptions).subscribe((data) => {
+            console.log(data);
+        });
     }
 
     get username() { return this.registerForm.get('username'); }

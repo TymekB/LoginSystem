@@ -9,12 +9,12 @@ import {AuthService} from '../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-    constructor(private authService: AuthService, private router: Router) {
+    constructor(private auth: AuthService, private router: Router) {
 
     }
 
     onLogoutClick() {
-        this.authService.logout();
+        this.auth.logout();
         this.router.navigate(['/login']);
     }
 
