@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
             })
         };
 
-        this.http.post('http://localhost/api/user/register', this.registerForm.value, httpOptions).subscribe((data) => {
+        this.http.post('http://localhost/api/register', this.registerForm.value, httpOptions).subscribe((data) => {
             console.log(data);
         });
     }
