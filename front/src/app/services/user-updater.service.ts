@@ -16,8 +16,6 @@ export class UserUpdaterService {
             })
         };
 
-        this.http.post('http://localhost/api/register', user, httpOptions).subscribe((data) => {
-            console.log(data);
-        });
+        return this.http.post('http://localhost/api/register', user, httpOptions)
     }
 }

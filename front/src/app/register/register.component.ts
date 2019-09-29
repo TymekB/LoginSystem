@@ -5,6 +5,8 @@ import {UniqueUsernameValidator} from '../validator/uniqueUsername.validator';
 import {UserRepositoryService} from '../services/user-repository.service';
 import {UniqueEmailValidator} from '../validator/uniqueEmail.validator';
 import {UserUpdaterService} from '../services/user-updater.service';
+import {Router} from '@angular/router';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
     selector: 'app-register',
@@ -15,7 +17,8 @@ export class RegisterComponent implements OnInit {
 
     registerForm: FormGroup;
 
-    constructor(private userRepository: UserRepositoryService, private updater: UserUpdaterService) {
+    constructor(private userRepository: UserRepositoryService, private updater: UserUpdaterService,
+                private router: Router, private flashMessage: FlashMessagesService) {
 
         this.registerForm = new FormGroup({
             username: new FormControl(null,
@@ -42,13 +45,23 @@ export class RegisterComponent implements OnInit {
     }
 
     ngOnInit() {
-
     }
 
     onSubmit() {
 
         const user = new User(this.username.value, this.password.value, this.email.value);
-        this.updater.create(user);
+
+
+        this.updater.create(user).subscribe((data) => {
+            console.log(data);
+            if (data.success) {
+                this.router.navigate(['login']);
+                this.flashMessage.show(data.message, {cssClass: 'alert-success', timeout: 5000});
+            } else {
+                this.flashMessage.show('Error occured. Please try again later',
+                    {cssClass: 'alert-danger'});
+            }
+        });
     }
 
     get username() {

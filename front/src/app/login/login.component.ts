@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
                 this.auth.storeUserData(data.token, data.user);
                 this.router.navigate(['dashboard']);
             } else {
-                this.flashMessage.show(data.message, {cssClass: 'alert-danger'});
+                this.flashMessage.show(data.message, {cssClass: 'alert-danger', timeout: 5000});
             }
         });
     }

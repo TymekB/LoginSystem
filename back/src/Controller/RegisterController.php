@@ -30,9 +30,13 @@ class RegisterController extends AbstractController
         $userCreated = $this->updater->create($username, $email, $password, $apiToken);
 
         if(!$userCreated) {
-            return $this->json(['success' => false, 'error_message' => 'validation error']);
+            return $this->json(['success' => false, 'message' => 'validation error']);
         }
 
-        return $this->json(['success' => true]);
+        return $this->json(
+            [
+                'success' => true,
+                'message' => "Your account was successfully created. You can now log in."
+            ]);
     }
 }
