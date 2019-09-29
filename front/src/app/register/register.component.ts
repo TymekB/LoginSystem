@@ -3,9 +3,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../user';
 import {UniqueUsernameValidator} from '../validator/uniqueUsername.validator';
 import {UserRepositoryService} from '../services/user-repository.service';
-import {map} from 'rxjs/operators';
 import {UniqueEmailValidator} from '../validator/uniqueEmail.validator';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {UserUpdaterService} from '../services/user-updater.service';
 
 @Component({
     selector: 'app-register',
@@ -17,7 +16,7 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     user: User = new User();
 
-    constructor(private userRepository: UserRepositoryService, private http: HttpClient) {
+    constructor(private userRepository: UserRepositoryService, private updater: UserUpdaterService) {
 
         this.registerForm = new FormGroup({
             username: new FormControl(null,
@@ -37,7 +36,7 @@ export class RegisterComponent implements OnInit {
                     Validators.required,
                     Validators.minLength(8),
                     Validators.maxLength(30),
-            ]),
+                ]),
             repeatPassword: new FormControl(null, [Validators.required])
         });
 
@@ -48,22 +47,22 @@ export class RegisterComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log(this.registerForm.value);
-        console.log(this.registerForm.valid);
-
-        const httpOptions = {
-            headers: new HttpHeaders({
-              'Content-Type': 'application/json'
-            })
-        };
-
-        this.http.post('http://localhost/api/register', this.registerForm.value, httpOptions).subscribe((data) => {
-            console.log(data);
-        });
+        this.updater.create(this.username.value, this.password.value, this.email.value);
     }
 
-    get username() { return this.registerForm.get('username'); }
-    get email() { return this.registerForm.get('email'); }
-    get password() { return this.registerForm.get('password'); }
-    get repeatPassword() { return this.registerForm.get('repeatPassword'); }
+    get username() {
+        return this.registerForm.get('username');
+    }
+
+    get email() {
+        return this.registerForm.get('email');
+    }
+
+    get password() {
+        return this.registerForm.get('password');
+    }
+
+    get repeatPassword() {
+        return this.registerForm.get('repeatPassword');
+    }
 }
