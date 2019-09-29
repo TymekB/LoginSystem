@@ -14,15 +14,13 @@ export class AuthService {
     constructor(private http: HttpClient) {
     }
 
-    authenticateUser(username: string, password: string): Observable<any> {
+    authenticateUser(user: UserInterface): Observable<any> {
 
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })
         };
-
-        const user = {username, password};
 
         return this.http.post('http://localhost/api/user/verify', user, httpOptions);
     }

@@ -9,14 +9,12 @@ export class UserUpdaterService {
     constructor(private http: HttpClient) {
     }
 
-    create(username: string, password: string, email: string) {
+    create(user: UserInterface) {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })
         };
-
-        const user = {username, password, email};
 
         this.http.post('http://localhost/api/register', user, httpOptions).subscribe((data) => {
             console.log(data);

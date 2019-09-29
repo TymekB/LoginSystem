@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {User} from '../user';
+import {User} from '../models/user';
 import {UniqueUsernameValidator} from '../validator/uniqueUsername.validator';
 import {UserRepositoryService} from '../services/user-repository.service';
 import {UniqueEmailValidator} from '../validator/uniqueEmail.validator';
@@ -14,7 +14,6 @@ import {UserUpdaterService} from '../services/user-updater.service';
 export class RegisterComponent implements OnInit {
 
     registerForm: FormGroup;
-    user: User = new User();
 
     constructor(private userRepository: UserRepositoryService, private updater: UserUpdaterService) {
 
@@ -47,7 +46,9 @@ export class RegisterComponent implements OnInit {
     }
 
     onSubmit() {
-        this.updater.create(this.username.value, this.password.value, this.email.value);
+
+        const user = new User(this.username.value, this.password.value, this.email.value);
+        this.updater.create(user);
     }
 
     get username() {

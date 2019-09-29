@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
+import {User} from '../models/user';
 
 @Component({
     selector: 'app-login',
@@ -10,8 +11,7 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 })
 export class LoginComponent implements OnInit {
 
-    username: string;
-    password: string;
+    user: User = new User();
 
     constructor(private auth: AuthService, private flashMessage: FlashMessagesService, private router: Router) {
     }
@@ -20,10 +20,7 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
-
-        this.auth.authenticateUser(this.username, this.password).subscribe((data) => {
-
-            console.log(data.success);
+        this.auth.authenticateUser(this.user).subscribe((data) => {
 
             if (data.success) {
                 this.auth.storeUserData(data.token, data.user);
@@ -32,7 +29,6 @@ export class LoginComponent implements OnInit {
                 this.flashMessage.show(data.message, {cssClass: 'alert-danger'});
             }
         });
-
     }
 
 }
