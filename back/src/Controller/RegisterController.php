@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\ApiTokenGenerator;
+use App\Dto\UserDto;
 use App\User\Updater\UserUpdater;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +34,9 @@ class RegisterController extends AbstractController
         $password = (isset($data->password)) ? $data->password : null;
         $apiToken = $this->apiTokenGenerator->generate();
 
-        $userCreated = $this->updater->create($username, $email, $password, $apiToken);
+        $userDto = new UserDto($username, $email, $password, $apiToken);
+
+        $userCreated = $this->updater->create($userDto);
 
         if(!$userCreated) {
             return $this->json(['success' => false, 'message' => 'validation error']);

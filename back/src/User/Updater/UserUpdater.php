@@ -4,6 +4,7 @@
 namespace App\User\Updater;
 
 
+use App\Dto\UserDto;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -31,14 +32,9 @@ class UserUpdater
         $this->encoder = $encoder;
     }
 
-    public function create($username, $email, $password, $apiToken)
+    public function create(UserDto $userDto)
     {
-        $user = new User();
-
-        $user->setUsername($username);
-        $user->setEmail($email);
-        $user->setPassword($password);
-        $user->setApiToken($apiToken);
+        $user = User::createFromDto($userDto);
 
         $errors = $this->validator->validate($user);
 
@@ -46,7 +42,7 @@ class UserUpdater
             return false;
         }
 
-        $passwordHash = $this->encoder->encodePassword($user, $password);
+        $passwordHash = $this->encoder->encodePassword($user, $userDto->getPassword());
         $user->setPassword($passwordHash);
 
         $this->em->persist($user);

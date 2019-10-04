@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Dto\UserDto;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -145,5 +146,17 @@ class User implements UserInterface, \JsonSerializable
             'username' => $this->username,
             'email' => $this->email
         ];
+    }
+
+    public static function createFromDto(UserDto $dto)
+    {
+        $user = new self;
+
+        $user->setUsername($dto->getUsername())
+            ->setEmail($dto->getEmail())
+            ->setPassword($dto->getPassword())
+            ->setApiToken($dto->getApiToken());
+
+        return $user;
     }
 }
