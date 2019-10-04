@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\ApiTokenGenerator;
 use App\User\Updater\UserUpdater;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,10 +13,15 @@ class RegisterController extends AbstractController
      * @var UserUpdater
      */
     private $updater;
+    /**
+     * @var ApiTokenGenerator
+     */
+    private $apiTokenGenerator;
 
-    public function __construct(UserUpdater $updater)
+    public function __construct(UserUpdater $updater, ApiTokenGenerator $apiTokenGenerator)
     {
         $this->updater = $updater;
+        $this->apiTokenGenerator = $apiTokenGenerator;
     }
 
     public function register(Request $request)
@@ -25,7 +31,7 @@ class RegisterController extends AbstractController
         $username = (isset($data->username)) ? $data->username : null;
         $email = (isset($data->email)) ? $data->email : null;
         $password = (isset($data->password)) ? $data->password : null;
-        $apiToken = bin2hex(random_bytes(16));
+        $apiToken = $this->apiTokenGenerator->generate();
 
         $userCreated = $this->updater->create($username, $email, $password, $apiToken);
 
