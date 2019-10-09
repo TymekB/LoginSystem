@@ -52,14 +52,14 @@ export class RegisterComponent implements OnInit {
         if (this.registerForm.valid) {
             const user = new User(this.username.value, this.password.value, this.email.value);
 
-            this.updater.create(user).subscribe((data: ServerResponse) => {
-                if (data.success) {
+            this.updater.create(user).subscribe((data: any) => {
+                if (data.code === 200) {
                     this.router.navigate(['login']);
                     this.flashMessage.show(data.message, {cssClass: 'alert-success', timeout: 5000});
-                } else {
-                    this.flashMessage.show('Error occured. Please try again later',
-                        {cssClass: 'alert-danger', timeout: 5000});
                 }
+            }, (error: any) => {
+                this.flashMessage.show('Error occured. Please try again later',
+                    {cssClass: 'alert-danger', timeout: 5000});
             });
         }
     }

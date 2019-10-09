@@ -9,8 +9,10 @@
 namespace App\Security\Auth;
 
 
+use App\Dto\UserDto;
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\User\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserAuthenticator
@@ -30,19 +32,19 @@ class UserAuthenticator
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    public function verify(?string $username, ?string $password)
+    public function verify(UserDto $userDto)
     {
         /** @var User $user */
-        $user = $this->userRepository->findOneBy(['username' => $username]);
+        $user = $this->userRepository->findOneBy(['username' => $userDto->getUsername()]);
 
         if(!$user) {
-            return false;
+            throw new UserNotFoundException();
         }
 
-        $auth = $this->passwordEncoder->isPasswordValid($user, $password);
+        $auth = $this->passwordEncoder->isPasswordValid($user, $userDto->getPassword());
 
         if(!$auth) {
-            return false;
+            throw new UserNotFoundException();
         }
 
         return $user;

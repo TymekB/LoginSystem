@@ -12,8 +12,8 @@ export class UniqueEmailValidator {
     static createValidator(userRepository: UserRepositoryService) {
         return (control: AbstractControl): Observable<any> => {
             return userRepository.findByEmail(control.value).pipe(
-                map((value: {success}) => {
-                    return value.success ? {emailTaken: true} : null;
+                map((value: any) => {
+                    return value.data.user ? {emailTaken: true} : null;
                 }));
         };
     }

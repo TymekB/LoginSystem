@@ -1,24 +1,24 @@
-index:
-    path: /api
-    controller: App\Controller\HomeController::index
-
-user_verify:
-    path: /api/user/verify
-    controller: App\Controller\UserController::verify
-    methods: [POST]
-
-find_username:
-    path: /api/find/username/{username}
-    controller: App\Controller\UserController::findByUsername
-    methods: [GET]
-
-
-find_email:
-    path: /api/find/email/{email}
-    controller: App\Controller\UserController::findByEmail
-    methods: [GET]
-
-register:
-    path: /api/register
-    controller: App\Controller\RegisterController::register
-    methods: [POST]
+#index:
+#    path: /api
+#    controller: App\Controller\HomeController::index
+#
+#user_verify:
+#    path: /api/user/verify
+#    controller: App\Controller\UserController::verify
+#    methods: [POST]
+#
+#find_username:
+#    path: /api/find/username/{username}
+#    controller: App\Controller\UserController::findByUsername
+#    methods: [GET]
+#
+#
+#find_email:
+#    path: /api/find/email/{email}
+#    controller: App\Controller\UserController::findByEmail
+#    methods: [GET]
+#
+#register:
+#    path: /api/register
+#    controller: App\Controller\RegisterController::register
+#    methods: [POST]

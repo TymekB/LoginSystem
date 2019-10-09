@@ -11,15 +11,6 @@ class UserDto
     private $password;
     private $apiToken;
 
-    public function __construct(string $username, string $email, string $password, string $apiToken)
-    {
-        $this->username = $username;
-        $this->email = $email;
-        $this->password = $password;
-        $this->apiToken = $apiToken;
-    }
-
-
     /**
      * @return mixed
      */
@@ -30,10 +21,13 @@ class UserDto
 
     /**
      * @param mixed $apiToken
+     * @return UserDto
      */
-    public function setApiToken($apiToken): void
+    public function setApiToken($apiToken): self
     {
         $this->apiToken = $apiToken;
+
+        return $this;
     }
 
     /**
@@ -46,10 +40,13 @@ class UserDto
 
     /**
      * @param mixed $username
+     * @return UserDto
      */
-    public function setUsername($username): void
+    public function setUsername($username): self
     {
         $this->username = $username;
+
+        return $this;
     }
 
     /**
@@ -62,10 +59,13 @@ class UserDto
 
     /**
      * @param mixed $email
+     * @return UserDto
      */
-    public function setEmail($email): void
+    public function setEmail($email): self
     {
         $this->email = $email;
+
+        return $this;
     }
 
     /**
@@ -78,10 +78,13 @@ class UserDto
 
     /**
      * @param mixed $password
+     * @return UserDto
      */
-    public function setPassword($password): void
+    public function setPassword($password): self
     {
         $this->password = $password;
+
+        return $this;
     }
 
 }

@@ -6,6 +6,7 @@ namespace App\User\Updater;
 
 use App\Dto\UserDto;
 use App\Entity\User;
+use App\User\Exception\UserDataNotValidException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -32,6 +33,11 @@ class UserUpdater
         $this->encoder = $encoder;
     }
 
+    /**
+     * @param UserDto $userDto
+     * @return bool
+     * @throws UserDataNotValidException
+     */
     public function create(UserDto $userDto)
     {
         $user = User::createFromDto($userDto);
@@ -39,7 +45,7 @@ class UserUpdater
         $errors = $this->validator->validate($user);
 
         if(count($errors)) {
-            return false;
+            throw new UserDataNotValidException();
         }
 
         $passwordHash = $this->encoder->encodePassword($user, $userDto->getPassword());

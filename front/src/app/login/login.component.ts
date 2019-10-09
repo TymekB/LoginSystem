@@ -20,14 +20,14 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
-        this.auth.authenticateUser(this.user).subscribe((data) => {
+        this.auth.authenticateUser(this.user).subscribe((response: any) => {
 
-            if (data.success) {
-                this.auth.storeUserData(data.token, data.user);
+            if (response.code === 200) {
+                this.auth.storeUserData(response.data.token, response.data.user);
                 this.router.navigate(['dashboard']);
-            } else {
-                this.flashMessage.show(data.message, {cssClass: 'alert-danger', timeout: 5000});
             }
+        }, (response: any) => {
+            this.flashMessage.show(response.error.message, {cssClass: 'alert-danger', timeout: 5000});
         });
     }
 

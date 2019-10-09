@@ -4,11 +4,19 @@ namespace App\Controller;
 
 use App\ApiTokenGenerator;
 use App\Dto\UserDto;
+use App\User\Exception\UserDataNotFoundException;
+use App\User\Exception\UserDataNotValidException;
 use App\User\Updater\UserUpdater;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\Routing\Annotation\Route;
 
-class RegisterController extends AbstractController
+/**
+ * @Route("/api", name="api_")
+ */
+class RegisterController extends AbstractFOSRestController
 {
     /**
      * @var UserUpdater
@@ -25,27 +33,36 @@ class RegisterController extends AbstractController
         $this->apiTokenGenerator = $apiTokenGenerator;
     }
 
+    /**
+     * @param Request $request
+     * @Rest\Post("/register")
+     * @return Response
+     * @throws UserDataNotValidException
+     * @throws UserDataNotFoundException
+     */
+
     public function register(Request $request)
     {
         $data = json_decode($request->getContent());
 
-        $username = (isset($data->username)) ? $data->username : null;
-        $email = (isset($data->email)) ? $data->email : null;
-        $password = (isset($data->password)) ? $data->password : null;
-        $apiToken = $this->apiTokenGenerator->generate();
-
-        $userDto = new UserDto($username, $email, $password, $apiToken);
-
-        $userCreated = $this->updater->create($userDto);
-
-        if(!$userCreated) {
-            return $this->json(['success' => false, 'message' => 'validation error']);
+        if (!isset($data->username) || !isset($data->email) || !isset($data->password)) {
+            throw new UserDataNotFoundException();
         }
 
-        return $this->json(
+        $apiToken = $this->apiTokenGenerator->generate();
+
+        $userDto = new UserDto();
+        $userDto->setUsername($data->username)
+            ->setEmail($data->email)
+            ->setPassword($data->password)
+            ->setApiToken($apiToken);
+
+        $this->updater->create($userDto);
+
+        return $this->handleView($this->view(
             [
-                'success' => true,
-                'message' => "Your account was successfully created. You can now log in."
-            ]);
+                'code' => Response::HTTP_OK,
+                'message' => 'Your account was successfully created. You can now log in.'
+            ]));
     }
 }

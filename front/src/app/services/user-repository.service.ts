@@ -11,12 +11,12 @@ export class UserRepositoryService {
 
     findByUsername(username: string) {
 
-        return this.http.get('http://localhost/api/find/username/' + username);
+        return this.http.get('http://localhost/api/user/find/username/' + username);
     }
 
     findByEmail(email: string) {
 
-        return this.http.get('http://localhost/api/find/email/' + email);
+        return this.http.get('http://localhost/api/user/find/email/' + email);
     }
 
 }

@@ -6,7 +6,10 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "firebase/php-jwt": "dev-master",
+        "friendsofsymfony/rest-bundle": "^2.5",
         "nelmio/cors-bundle": "^1.5",
+        "sensio/framework-extra-bundle": "^5.3",
+        "symfony/config": "4.2.*",
         "symfony/console": "4.2.*",
         "symfony/dotenv": "4.2.*",
         "symfony/flex": "^1.1",
@@ -14,6 +17,7 @@
         "symfony/maker-bundle": "^1.11",
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "4.2.*",
+        "symfony/serializer": "4.2.*",
         "symfony/validator": "4.2.*",
         "symfony/yaml": "4.2.*"
     },

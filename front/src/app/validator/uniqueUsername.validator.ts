@@ -5,15 +5,15 @@ import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import 'rxjs-compat/add/operator/map';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 
 export class UniqueUsernameValidator {
 
     static createValidator(userRepository: UserRepositoryService) {
         return (control: AbstractControl): Observable<any> => {
             return userRepository.findByUsername(control.value).pipe(
-                map((value: {success}) => {
-                    return value.success ? {usernameTaken: true} : null;
+                map((value: any) => {
+                    return value.data.user ? {usernameTaken: true} : null;
                 }));
         };
     }
