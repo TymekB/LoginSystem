@@ -5,7 +5,7 @@
         </a>
 
         <ul class="navbar-nav">
-            <ng-template [ngIf]="!auth.loggedIn()">
+            <ng-template [ngIf]="!auth.isLoggedIn()">
                 <li class="nav-item">
                     <a class="nav-link icon-login" routerLink="/login" routerLinkActive="active">Sign in</a>
                 </li>
@@ -14,7 +14,7 @@
                 </li>
             </ng-template>
 
-            <ng-template [ngIf]="auth.loggedIn()">
+            <ng-template [ngIf]="auth.isLoggedIn()">
                 <li class="nav-item">
                     <a class="nav-link icon-login" href="#" (click)="onLogoutClick()">Logout</a>
                 </li>

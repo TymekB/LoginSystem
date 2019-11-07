@@ -20,59 +20,14 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends AbstractFOSRestController
 {
     /**
-     * @var JsonWebToken
-     */
-    private $jwt;
-    /**
-     * @var UserAuthenticator
-     */
-    private $userAuth;
-    /**
      * @var UserRepository
      */
     private $userRepository;
 
 
-    public function __construct(UserRepository $userRepository, UserAuthenticator $userAuth, JsonWebToken $jwt)
+    public function __construct(UserRepository $userRepository)
     {
-        $this->jwt = $jwt;
-        $this->userAuth = $userAuth;
         $this->userRepository = $userRepository;
-    }
-
-    /**
-     * @param Request $request
-     * @return Response
-     * @throws UserDataNotFoundException
-     * @throws UserNotFoundException
-     * @Rest\Post("/user/verify")
-     */
-
-    public function verify(Request $request)
-    {
-        $data = json_decode($request->getContent());
-
-        if(!isset($data->username) || !isset($data->password)) {
-            throw new UserDataNotFoundException();
-        }
-
-        $userDto = new UserDto();
-        $userDto
-            ->setUsername($data->username)
-            ->setPassword($data->password);
-
-        $user = $this->userAuth->verify($userDto);
-
-        $tokenId = base64_encode(openssl_random_pseudo_bytes(32));
-        $token = $this->jwt->encode($tokenId, ['apiToken' => $user->getApiToken()]);
-
-        return $this->handleView($this->view(
-            [
-                'code' => Response::HTTP_OK,
-                'data' => ['user' => $user, 'token' => $token]
-            ]
-        ));
-
     }
 
     /**

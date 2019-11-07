@@ -1,15 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {tokenNotExpired} from 'angular2-jwt';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-
-    private authToken: string;
-    private user: object;
 
     constructor(private http: HttpClient) {
     }
@@ -22,37 +18,24 @@ export class AuthService {
             })
         };
 
-        return this.http.post('http://localhost/api/user/verify', user, httpOptions);
+        return this.http.post('http://localhost/api/auth', user, httpOptions);
     }
 
-    storeUserData(token: string, user: object) {
+    setUser(user: UserInterface) {
 
-        this.authToken = token;
-        this.user = user;
-
-        localStorage.setItem('id_token', token);
         localStorage.setItem('user', JSON.stringify(user));
     }
 
-    logout() {
-        this.authToken = null;
-        this.user = null;
-        localStorage.clear();
-    }
-
-    loggedIn() {
-        return tokenNotExpired('id_token');
-    }
-
     getUser() {
+        return JSON.parse(localStorage.getItem('user'));
+    }
 
-        const user = JSON.parse(localStorage.getItem('user'));
+    logout() {
+        localStorage.removeItem('user');
+    }
 
-        if (user) {
-            this.user = user;
-        }
-
-        return this.user;
+    isLoggedIn() {
+        return localStorage.getItem('user') !== null;
     }
 }
 
