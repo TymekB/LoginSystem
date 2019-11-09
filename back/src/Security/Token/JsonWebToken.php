@@ -50,4 +50,9 @@ class JsonWebToken
             'HS512'
         );
     }
+
+    public function decode(string $token)
+    {
+        return JWT::decode($token, $this->secretKey);
+    }
 }
