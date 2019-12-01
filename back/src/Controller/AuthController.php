@@ -21,10 +21,6 @@ use App\User\Exception\UserNotFoundException;
 class AuthController extends AbstractFOSRestController
 {
     /**
-     * @var UserAuthenticator
-     */
-    private $userAuth;
-    /**
      * @var JsonWebToken
      */
     private $jwt;
@@ -33,9 +29,8 @@ class AuthController extends AbstractFOSRestController
      */
     private $userRepository;
 
-    public function __construct(UserRepository $userRepository, UserAuthenticator $userAuth, JsonWebToken $jwt)
+    public function __construct(UserRepository $userRepository, JsonWebToken $jwt)
     {
-        $this->userAuth = $userAuth;
         $this->jwt = $jwt;
         $this->userRepository = $userRepository;
     }
