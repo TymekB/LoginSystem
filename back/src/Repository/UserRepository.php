@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\User\Exception\UserNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,9 +16,44 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class UserRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    /**
+     * @var RegistryInterface
+     */
+    private $registry;
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $passwordEncoder;
+
+    public function __construct(RegistryInterface $registry, UserPasswordEncoderInterface $passwordEncoder)
     {
         parent::__construct($registry, User::class);
+        $this->registry = $registry;
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
+
+    /**
+     * @param string $username
+     * @param string $password
+     * @return User|null
+     * @throws UserNotFoundException
+     */
+    public function findOneByUsernameAndPassword(string $username, string $password)
+    {
+        $user = $this->findOneBy(['username' => $username]);
+
+        if(!$user) {
+            throw new UserNotFoundException();
+        }
+
+        $passwordValid = $this->passwordEncoder->isPasswordValid($user, $password);
+
+        if(!$passwordValid) {
+            throw new UserNotFoundException();
+        }
+
+        return $user;
     }
 
     // /**

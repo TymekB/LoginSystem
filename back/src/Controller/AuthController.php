@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Dto\UserDto;
+use App\Repository\UserRepository;
 use App\Security\Auth\UserAuthenticator;
 use App\Security\Token\JsonWebToken;
 use App\User\Exception\UserDataNotFoundException;
@@ -27,13 +28,17 @@ class AuthController extends AbstractFOSRestController
      * @var JsonWebToken
      */
     private $jwt;
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
 
-    public function __construct(UserAuthenticator $userAuth, JsonWebToken $jwt)
+    public function __construct(UserRepository $userRepository, UserAuthenticator $userAuth, JsonWebToken $jwt)
     {
         $this->userAuth = $userAuth;
         $this->jwt = $jwt;
+        $this->userRepository = $userRepository;
     }
-
 
     /**
      * @Rest\Post("/auth")
@@ -50,12 +55,7 @@ class AuthController extends AbstractFOSRestController
             throw new UserDataNotFoundException();
         }
 
-        $userDto = new UserDto();
-        $userDto
-            ->setUsername($data->username)
-            ->setPassword($data->password);
-
-        $user = $this->userAuth->verify($userDto);
+        $user = $this->userRepository->findOneByUsernameAndPassword($data->username, $data->password);
 
         $tokenId = base64_encode(openssl_random_pseudo_bytes(32));
         $token = $this->jwt->encode($tokenId, ['token' => $user->getApiToken()]);
@@ -70,4 +70,6 @@ class AuthController extends AbstractFOSRestController
 
         return $response;
     }
+
+
 }
