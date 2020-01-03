@@ -2,12 +2,7 @@
 
 namespace App\Controller;
 
-use App\Dto\UserDto;
 use App\Repository\UserRepository;
-use App\Security\Auth\UserAuthenticator;
-use App\Security\Token\JsonWebToken;
-use App\User\Exception\UserDataNotFoundException;
-use App\User\Exception\UserNotFoundException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Response;

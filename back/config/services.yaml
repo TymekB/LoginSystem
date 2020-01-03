@@ -23,7 +23,7 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Security\Token\JsonWebToken:
+    App\Security\JsonWebToken:
         arguments:
             $secretKey: '%env(JWT_SECRET)%'
             $serverName: '%env(SERVER_NAME)%'

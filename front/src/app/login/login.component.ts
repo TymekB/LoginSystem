@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
 
         this.auth.authenticateUser(this.user).subscribe((response: any) => {
             if (response.code === 200) {
+
+                console.log(response);
+
                 this.auth.setUser(response.data.user);
                 this.router.navigate(['dashboard']);
             }

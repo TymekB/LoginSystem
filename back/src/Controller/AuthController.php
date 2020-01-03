@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Dto\UserDto;
 use App\Repository\UserRepository;
-use App\Security\Auth\UserAuthenticator;
-use App\Security\Token\JsonWebToken;
+use App\Security\JsonWebToken;
 use App\User\Exception\UserDataNotFoundException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -33,6 +31,18 @@ class AuthController extends AbstractFOSRestController
     {
         $this->jwt = $jwt;
         $this->userRepository = $userRepository;
+    }
+
+    /**
+     * @Rest\Get("/test")
+     */
+    public function test()
+    {
+        $response = $this->handleView($this->view(['protected data']));
+
+        $response->headers->setCookie(new Cookie('test', 'test1'));
+
+        return $response;
     }
 
     /**

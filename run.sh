@@ -4,4 +4,4 @@ docker-compose up -d
 cd ..
 
 cd front || exit
-ng serve
+ng build --watch
