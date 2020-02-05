@@ -33,11 +33,6 @@ class User implements UserInterface, \JsonSerializable
      */
     private $email;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $apiToken;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -75,18 +70,6 @@ class User implements UserInterface, \JsonSerializable
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
-        return $this;
-    }
-
-    public function getApiToken(): ?string
-    {
-        return $this->apiToken;
-    }
-
-    public function setApiToken(string $apiToken): self
-    {
-        $this->apiToken = $apiToken;
 
         return $this;
     }
@@ -154,8 +137,7 @@ class User implements UserInterface, \JsonSerializable
 
         $user->setUsername($dto->getUsername())
             ->setEmail($dto->getEmail())
-            ->setPassword($dto->getPassword())
-            ->setApiToken($dto->getApiToken());
+            ->setPassword($dto->getPassword());
 
         return $user;
     }

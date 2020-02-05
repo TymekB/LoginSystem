@@ -18,11 +18,10 @@ export class AuthService {
             })
         };
 
-        return this.http.post('http://localhost/api/auth', user, httpOptions);
+        return this.http.post('http://localhost/api/login_check', user, httpOptions);
     }
 
     setUser(user: UserInterface) {
-
         localStorage.setItem('user', JSON.stringify(user));
     }
 

@@ -22,13 +22,9 @@ export class LoginComponent implements OnInit {
     onSubmit() {
 
         this.auth.authenticateUser(this.user).subscribe((response: any) => {
-            if (response.code === 200) {
+            this.auth.setUser(response.user);
+            this.router.navigate(['dashboard']);
 
-                console.log(response);
-
-                this.auth.setUser(response.data.user);
-                this.router.navigate(['dashboard']);
-            }
         }, () => {
             this.flashMessage.show('Wrong credentials',
                 {cssClass: 'alert-danger', timeout: 5000}

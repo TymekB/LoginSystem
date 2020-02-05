@@ -26,6 +26,15 @@ class UserController extends AbstractFOSRestController
     }
 
     /**
+     * @Rest\Get("/test")
+     * @return Response
+     */
+    public function test()
+    {
+        return $this->handleView($this->view(['protected data']));
+    }
+
+    /**
      * @Rest\Get("/user/find/username/{username}")
      * @param $username
      * @return Response

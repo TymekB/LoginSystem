@@ -22,15 +22,10 @@ class RegisterController extends AbstractFOSRestController
      * @var UserUpdater
      */
     private $updater;
-    /**
-     * @var ApiTokenGenerator
-     */
-    private $apiTokenGenerator;
 
-    public function __construct(UserUpdater $updater, ApiTokenGenerator $apiTokenGenerator)
+    public function __construct(UserUpdater $updater)
     {
         $this->updater = $updater;
-        $this->apiTokenGenerator = $apiTokenGenerator;
     }
 
     /**
@@ -49,13 +44,10 @@ class RegisterController extends AbstractFOSRestController
             throw new UserDataNotFoundException();
         }
 
-        $apiToken = $this->apiTokenGenerator->generate();
-
         $userDto = new UserDto();
         $userDto->setUsername($data->username)
             ->setEmail($data->email)
-            ->setPassword($data->password)
-            ->setApiToken($apiToken);
+            ->setPassword($data->password);
 
         $this->updater->create($userDto);
 

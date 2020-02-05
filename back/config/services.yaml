@@ -23,10 +23,10 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Security\JsonWebToken:
-        arguments:
-            $secretKey: '%env(JWT_SECRET)%'
-            $serverName: '%env(SERVER_NAME)%'
+    App\EventListener\AuthenticationSuccessListener:
+        arguments: ['%lexik_jwt_authentication.token_ttl%']
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccess}
 
     sensio_framework_extra.view.listener:
         alias: Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener

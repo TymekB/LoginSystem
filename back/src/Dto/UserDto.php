@@ -9,26 +9,6 @@ class UserDto
     private $username;
     private $email;
     private $password;
-    private $apiToken;
-
-    /**
-     * @return mixed
-     */
-    public function getApiToken()
-    {
-        return $this->apiToken;
-    }
-
-    /**
-     * @param mixed $apiToken
-     * @return UserDto
-     */
-    public function setApiToken($apiToken): self
-    {
-        $this->apiToken = $apiToken;
-
-        return $this;
-    }
 
     /**
      * @return mixed
