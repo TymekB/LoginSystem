@@ -12,6 +12,7 @@ import {User} from '../models/user';
 export class LoginComponent implements OnInit {
 
     user: User = new User();
+    private error = false;
 
     constructor(private auth: AuthService, private flashMessage: FlashMessagesService, private router: Router) {
     }
@@ -22,13 +23,19 @@ export class LoginComponent implements OnInit {
     onSubmit() {
 
         this.auth.authenticateUser(this.user).subscribe((response: any) => {
+
+            this.error = false;
+
             this.auth.setUser(response.user);
             this.router.navigate(['dashboard']);
 
         }, () => {
-            this.flashMessage.show('Wrong credentials',
-                {cssClass: 'alert-danger', timeout: 5000}
-            );
+
+            this.error = true;
+
+            // this.flashMessage.show('Wrong credentials',
+            //     {cssClass: 'alert-danger', timeout: 5000}
+            // );
         });
     }
 

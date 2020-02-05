@@ -23,6 +23,8 @@
                         <input type="password" class="form-control" placeholder="Password" aria-label="Password" [(ngModel)]="user.password" name="password" aria-describedby="basic-addon2">
                     </div>
 
+                    <p *ngIf="error" class="error">Wrong credentials</p>
+
                     <div class="form-group">
                         <button class="btn btn-primary">Login</button>
                     </div>

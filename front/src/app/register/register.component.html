@@ -13,85 +13,97 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="icon-user"></i></span>
                         </div>
-                        <input formControlName="username" id="username" name="username" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <input formControlName="username" id="username" name="username" type="text" class="form-control"
+                               placeholder="Username" aria-label="Username"
                                aria-describedby="basic-addon1">
                     </div>
 
-                    <div *ngIf="username.touched && !username.valid" class="alert alert-danger">
-                        <div *ngIf="username.hasError('required')">
+
+                    <div *ngIf="username.touched && !username.valid" class="error">
+
+                        <p *ngIf="username.hasError('required')">
                             Username is required.
-                        </div>
+                        </p>
 
-                        <div *ngIf="username.hasError('minlength') || username.hasError('maxlength')">
+                        <p *ngIf="username.hasError('minlength') || username.hasError('maxlength')">
                             Username must be between 4 and 20 characters.
-                        </div>
+                        </p>
 
-                        <div *ngIf="username.hasError('pattern')">
+                        <p *ngIf="username.hasError('pattern')">
                             Username cannot contain alphanumeric characters.
-                        </div>
+                        </p>
 
-                        <div *ngIf="username.hasError('usernameTaken')">
+                        <p *ngIf="username.hasError('usernameTaken')">
                             Username is taken.
-                        </div>
+                        </p>
                     </div>
+
 
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon2"><i class="icon-mail-alt"></i></span>
                         </div>
-                        <input formControlName="email" type="email" class="form-control" placeholder="Email" aria-label="Email"
+                        <input formControlName="email" type="email" class="form-control" placeholder="Email"
+                               aria-label="Email"
                                aria-describedby="basic-addon2">
                     </div>
 
-                    <div *ngIf="email.touched && !email.valid" class="alert alert-danger">
-                        <div *ngIf="email.hasError('required')">
+                    <div *ngIf="email.touched && !email.valid" class="error">
+
+                        <p *ngIf="email.hasError('required')">
                             Email is required.
-                        </div>
+                        </p>
 
-                        <div *ngIf="email.hasError('email')">
-                            Email is not valid.
-                        </div>
+                        <p *ngIf="email.hasError('minlength') || email.hasError('maxlength')">
+                            Email must be between 4 and 20 characters.
+                        </p>
 
-                        <div *ngIf="email.hasError('emailTaken')">
-                            Account with this email already exists.
-                        </div>
+                        <p *ngIf="email.hasError('pattern')">
+                            Email cannot contain alphanumeric characters.
+                        </p>
+
+                        <p *ngIf="email.hasError('emailTaken')">
+                            Email is taken.
+                        </p>
                     </div>
 
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3"><i class="icon-key"></i></span>
                         </div>
-                        <input formControlName="password" type="password" class="form-control" placeholder="Password" aria-label="Password"
+                        <input formControlName="password" type="password" class="form-control" placeholder="Password"
+                               aria-label="Password"
                                aria-describedby="basic-addon3">
                     </div>
 
-                    <div *ngIf="password.touched && !password.valid" class="alert alert-danger">
-                        <div *ngIf="password.hasError('required')">
+                    <div *ngIf="password.touched && !password.valid" class="error">
+                        <p *ngIf="password.hasError('required')">
                             Password is required.
-                        </div>
+                        </p>
 
-                        <div *ngIf="password.hasError('minlength')|| password.hasError('maxlength')">
+                        <p *ngIf="password.hasError('minlength')|| password.hasError('maxlength')">
                             Password must be between 8 and 20 characters.
-                        </div>
+                        </p>
                     </div>
 
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon43"><i class="icon-key"></i></span>
                         </div>
-                        <input formControlName="repeatPassword" type="password" class="form-control" placeholder="Repeat password" aria-label="Repeat password"
+                        <input formControlName="repeatPassword" type="password" class="form-control"
+                               placeholder="Repeat password" aria-label="Repeat password"
                                aria-describedby="basic-addon4" pattern="{{ password.value }}">
                     </div>
 
-                    <div *ngIf="repeatPassword.touched && !repeatPassword.valid" class="alert alert-danger">
+                    <div *ngIf="repeatPassword.touched && !repeatPassword.valid" class="error">
 
-                        <div *ngIf="repeatPassword.hasError('required')">
+                        <p *ngIf="repeatPassword.hasError('required')">
                             You must repeat your password
-                        </div>
+                        </p>
 
-                        <div *ngIf="repeatPassword.hasError('pattern')">
+                        <p *ngIf="repeatPassword.hasError('pattern')">
                             Password are not the same.
-                        </div>
+                        </p>
                     </div>
 
                     <button class="btn btn-success" [disabled]="!registerForm.valid">Create account</button>

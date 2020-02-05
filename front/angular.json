@@ -23,6 +23,7 @@
                             "src/assets"
                         ],
                         "styles": [
+                            "src/custom.css",
                             "src/styles.css",
                             "src/fontello/css/fontello.css"
                         ],
