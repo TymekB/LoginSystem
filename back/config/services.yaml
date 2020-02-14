@@ -28,8 +28,20 @@ services:
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccess}
 
+    App\EventListener\RefreshTokenListener:
+        arguments: ['%gesdinet_jwt_refresh_token.ttl%']
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: setRefreshToken, priority: -2}
+
+    App\EventListener\RequestListener:
+        tags:
+            - {name: kernel.event_listener, event: kernel.request, method: onRequest, priority: -10}
+
     sensio_framework_extra.view.listener:
         alias: Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    fos_rest.templating:
+        alias: twig

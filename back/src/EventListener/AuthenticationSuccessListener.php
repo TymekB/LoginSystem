@@ -4,16 +4,19 @@
 namespace App\EventListener;
 
 
-
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use Symfony\Component\HttpFoundation\Cookie;
 
 class AuthenticationSuccessListener
 {
+    /**
+     * @var int
+     */
     private $tokenTtl;
 
     public function __construct(int $tokenTtl)
     {
+
         $this->tokenTtl = $tokenTtl;
     }
 
@@ -27,10 +30,11 @@ class AuthenticationSuccessListener
         $event->setData($data);
 
         $token = $data['token'];
+
         $response->headers->setCookie(new Cookie('BEARER', $token,
             (
-                new \DateTime())->add(new \DateInterval('PT' . $this->tokenTtl . 'S'))
-            ));
+            new \DateTime())->add(new \DateInterval('PT' . $this->tokenTtl . 'S'))
+        ));
 
         return $response;
     }

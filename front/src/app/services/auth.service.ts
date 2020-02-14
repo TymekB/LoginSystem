@@ -1,24 +1,29 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {switchMap} from "rxjs/operators";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
+    private httpOptions;
+
     constructor(private http: HttpClient) {
-    }
-
-    authenticateUser(user: UserInterface): Observable<any> {
-
-        const httpOptions = {
+        this.httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })
         };
+    }
 
-        return this.http.post('http://localhost/api/login_check', user, httpOptions);
+    authenticateUser(user: UserInterface): Observable<any> {
+        return this.http.post('http://localhost/api/login_check', user, this.httpOptions);
+    }
+
+    refreshToken() {
+        return this.http.post('http://localhost/api/token/refresh', null);
     }
 
     setUser(user: UserInterface) {

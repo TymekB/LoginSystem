@@ -3,6 +3,8 @@ import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {User} from '../models/user';
+import {BehaviorSubject, interval, of} from "rxjs";
+import {switchMap, take} from "rxjs/operators";
 
 @Component({
     selector: 'app-login',
@@ -18,24 +20,26 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+
     }
 
     onSubmit() {
 
+
         this.auth.authenticateUser(this.user).subscribe((response: any) => {
+
+            console.log(response);
 
             this.error = false;
 
             this.auth.setUser(response.user);
             this.router.navigate(['dashboard']);
 
-        }, () => {
+        }, (error) => {
+
+            console.log(error);
 
             this.error = true;
-
-            // this.flashMessage.show('Wrong credentials',
-            //     {cssClass: 'alert-danger', timeout: 5000}
-            // );
         });
     }
 

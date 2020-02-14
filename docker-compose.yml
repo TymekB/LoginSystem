@@ -58,7 +58,7 @@ services:
         container_name: angular_nginx
         build: .docker/nginx
         volumes:
-            - ./front/dist:/var/www
+            - ./front/dist:/var/www:delegated
         ports:
             - 80:80
         links:

@@ -7,10 +7,11 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FlashMessagesModule} from 'angular2-flash-messages';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthGuardService} from './services/auth-guard.service';
+import {RefreshTokenInterceptorService} from "./services/refresh-token-interceptor.service";
 
 
 @NgModule({
@@ -29,7 +30,11 @@ import {AuthGuardService} from './services/auth-guard.service';
         HttpClientModule,
         FlashMessagesModule.forRoot()
     ],
-    providers: [AuthGuardService],
+    providers: [{
+        provide: HTTP_INTERCEPTORS,
+        useClass: RefreshTokenInterceptorService,
+        multi: true
+    }, AuthGuardService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
