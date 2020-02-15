@@ -11,7 +11,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FlashMessagesModule} from 'angular2-flash-messages';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthGuardService} from './services/auth-guard.service';
-import {RefreshTokenInterceptorService} from "./services/refresh-token-interceptor.service";
+import {RefreshTokenInterceptorService} from './services/refresh-token-interceptor.service';
 
 
 @NgModule({

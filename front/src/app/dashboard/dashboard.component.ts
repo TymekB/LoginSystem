@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {catchError, delay, switchMap} from "rxjs/operators";
-import {BehaviorSubject, of, throwError} from "rxjs";
-
+import {HttpClient} from '@angular/common/http';
 
 @Component({
     selector: 'app-dashboard',
@@ -16,7 +13,6 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-
         this.http.get('http://localhost/api/test')
             .subscribe(response => console.log(response), error => console.log(error));
     }
