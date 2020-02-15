@@ -12,6 +12,7 @@ import {FlashMessagesModule} from 'angular2-flash-messages';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import {RefreshTokenInterceptorService} from './services/refresh-token-interceptor.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {RefreshTokenInterceptorService} from './services/refresh-token-intercept
         NavbarComponent,
         LoginComponent,
         RegisterComponent,
-        DashboardComponent
+        DashboardComponent,
+        NotFoundComponent
     ],
     imports: [
         BrowserModule,
