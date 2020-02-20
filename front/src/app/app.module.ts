@@ -13,6 +13,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import {RefreshTokenInterceptorService} from './services/refresh-token-interceptor.service';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {RecaptchaFormsModule, RecaptchaModule} from 'ng-recaptcha';
 
 
 @NgModule({
@@ -30,6 +31,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
+        RecaptchaFormsModule,
+        RecaptchaModule,
         FlashMessagesModule.forRoot()
     ],
     providers: [{

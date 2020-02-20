@@ -6,16 +6,20 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class UserUpdaterService {
 
-    constructor(private http: HttpClient) {
-    }
+    readonly httpOptions;
 
-    create(user: UserInterface) {
-        const httpOptions = {
+    constructor(private http: HttpClient) {
+        this.httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })
         };
+    }
 
-        return this.http.post('http://localhost/api/register', user, httpOptions)
+    create(user: UserInterface, recaptcha: string) {
+
+        const data = {...user, recaptcha};
+
+        return this.http.post('http://localhost/api/register', user, this.httpOptions);
     }
 }

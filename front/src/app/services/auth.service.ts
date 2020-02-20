@@ -8,7 +8,7 @@ import {switchMap} from "rxjs/operators";
 })
 export class AuthService {
 
-    private httpOptions;
+    readonly httpOptions;
 
     constructor(private http: HttpClient) {
         this.httpOptions = {

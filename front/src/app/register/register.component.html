@@ -54,6 +54,10 @@
                             Email is required.
                         </p>
 
+                        <p *ngIf="email.hasError('email')">
+                            Email is not valid
+                        </p>
+
                         <p *ngIf="email.hasError('minlength') || email.hasError('maxlength')">
                             Email must be between 4 and 20 characters.
                         </p>
@@ -106,7 +110,9 @@
                         </p>
                     </div>
 
-                    <button class="btn btn-success" [disabled]="!registerForm.valid">Create account</button>
+                    <re-captcha formControlName="recaptcha" siteKey="6LcdLtkUAAAAAGnhsFv9bDQUVRjzTWWjhYtY4KYd"></re-captcha>
+
+                    <button class="btn btn-success" [disabled]="!registerForm.valid" style="margin-top: 10px;">Create account</button>
 
                 </form>
             </div>

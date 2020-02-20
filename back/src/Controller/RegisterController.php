@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\ApiTokenGenerator;
 use App\Dto\UserDto;
 use App\User\Exception\UserDataNotFoundException;
 use App\User\Exception\UserDataNotValidException;
