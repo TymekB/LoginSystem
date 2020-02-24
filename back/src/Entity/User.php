@@ -33,6 +33,8 @@ class User implements UserInterface, \JsonSerializable
      */
     private $email;
 
+    private $recaptcha;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,8 +139,28 @@ class User implements UserInterface, \JsonSerializable
 
         $user->setUsername($dto->getUsername())
             ->setEmail($dto->getEmail())
-            ->setPassword($dto->getPassword());
+            ->setPassword($dto->getPassword())
+            ->setRecaptcha($dto->getRecaptcha());
 
         return $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRecaptcha()
+    {
+        return $this->recaptcha;
+    }
+
+    /**
+     * @param mixed $recaptcha
+     * @return User
+     */
+    public function setRecaptcha(string $recaptcha): self
+    {
+        $this->recaptcha = $recaptcha;
+
+        return $this;
     }
 }

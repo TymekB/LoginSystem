@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {switchMap} from "rxjs/operators";
+import {UserInterface} from '../interfaces/user-interface';
 
 @Injectable({
     providedIn: 'root'

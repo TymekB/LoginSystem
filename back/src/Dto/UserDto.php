@@ -9,6 +9,7 @@ class UserDto
     private $username;
     private $email;
     private $password;
+    private $recaptcha;
 
     /**
      * @return mixed
@@ -63,6 +64,25 @@ class UserDto
     public function setPassword($password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRecaptcha()
+    {
+        return $this->recaptcha;
+    }
+
+    /**
+     * @param mixed $recaptcha
+     * @return UserDto
+     */
+    public function setRecaptcha($recaptcha): self
+    {
+        $this->recaptcha = $recaptcha;
 
         return $this;
     }

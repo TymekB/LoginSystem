@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {UserInterface} from '../interfaces/user-interface';
 
 @Injectable({
     providedIn: 'root'
@@ -16,9 +17,7 @@ export class UserUpdaterService {
         };
     }
 
-    create(user: UserInterface, recaptcha: string) {
-
-        const data = {...user, recaptcha};
+    create(user: UserInterface) {
 
         return this.http.post('http://localhost/api/register', user, this.httpOptions);
     }

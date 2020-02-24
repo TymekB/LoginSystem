@@ -51,8 +51,8 @@ class UserUpdater
         $passwordHash = $this->encoder->encodePassword($user, $userDto->getPassword());
         $user->setPassword($passwordHash);
 
-//        $this->em->persist($user);
-//        $this->em->flush();
+        $this->em->persist($user);
+        $this->em->flush();
 
         return true;
     }

@@ -4,7 +4,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthGuardService} from './services/auth-guard.service';
-import {LoggedInAuthGuardService} from './logged-in-auth-guard.service';
+import {LoggedInAuthGuardService} from './services/logged-in-auth-guard.service';
 import {NotFoundComponent} from './not-found/not-found.component';
 
 const routes: Routes = [

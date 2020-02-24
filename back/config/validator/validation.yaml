@@ -19,4 +19,5 @@ App\Entity\User:
             -   Length:
                     min: 8
                     max: 20
-
+        recaptcha:
+            -   App\Validator\Constraints\ContainsValidRecaptcha: ~

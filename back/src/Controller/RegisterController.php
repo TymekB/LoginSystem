@@ -39,14 +39,15 @@ class RegisterController extends AbstractFOSRestController
     {
         $data = json_decode($request->getContent());
 
-        if (!isset($data->username) || !isset($data->email) || !isset($data->password)) {
+        if (!isset($data->username) || !isset($data->email) || !isset($data->password) || !isset($data->recaptcha)) {
             throw new UserDataNotFoundException();
         }
 
         $userDto = new UserDto();
         $userDto->setUsername($data->username)
             ->setEmail($data->email)
-            ->setPassword($data->password);
+            ->setPassword($data->password)
+            ->setRecaptcha($data->recaptcha);
 
         $this->updater->create($userDto);
 

@@ -52,11 +52,7 @@ export class RegisterComponent implements OnInit {
 
         if (this.registerForm.valid) {
 
-            const user = new User(this.username.value, this.password.value, this.email.value);
-            const recaptcha = this.recaptcha.value;
-
-            this.updater.create(user, recaptcha).subscribe((data: any) => {
-
+            this.updater.create(this.registerForm.value).subscribe((data: any) => {
                 this.router.navigate(['login']);
                 this.flashMessage.show(data.message, {cssClass: 'alert-success', timeout: 5000});
 

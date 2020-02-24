@@ -15,8 +15,13 @@
             </ng-template>
 
             <ng-template [ngIf]="auth.isLoggedIn()">
-                <li class="nav-item">
-                    <a class="nav-link icon-login" href="#" (click)="onLogoutClick()">Logout</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ auth.getUser().username }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" (click)="onLogoutClick()">Logout</a>
+                    </div>
                 </li>
             </ng-template>
         </ul>
