@@ -1,7 +1,11 @@
-App\Entity\User:
-    constraints:
-        -   Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: username
-        -   Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+App\Dto\UserDto:
+#    constraints:
+#        -   Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+#                fields: [username]
+#                entityClass: App\Entity\User
+#        -   Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+#                fields: [email]
+#                entityClass: App\Entity\User
     properties:
         username:
             -   NotBlank:
@@ -10,10 +14,12 @@ App\Entity\User:
                     max: 20
             -   Regex:
                     pattern: "/[a-zA-Z]+/"
+            -   App\Validator\Constraints\UniqueUsername: ~
 
         email:
             -   NotBlank:
             -   Email:
+            -   App\Validator\Constraints\UniqueEmail: ~
 
         password:
             -   Length:

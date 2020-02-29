@@ -52,10 +52,16 @@ export class RegisterComponent implements OnInit {
 
         if (this.registerForm.valid) {
 
+            const user = this.registerForm.value;
+            delete user.repeatPassword;
+
             this.updater.create(this.registerForm.value).subscribe((data: any) => {
                 this.router.navigate(['login']);
-                this.flashMessage.show(data.message, {cssClass: 'alert-success', timeout: 5000});
 
+                this.flashMessage.show('You\'ve been successfully registered. You can now sign in', {
+                    cssClass: 'alert-success',
+                    timeout: 5000
+                });
             }, (error: any) => {
                 this.flashMessage.show('Error occured. Please try again later',
                     {cssClass: 'alert-danger', timeout: 5000});

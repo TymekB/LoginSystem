@@ -19,6 +19,8 @@ export class UserUpdaterService {
 
     create(user: UserInterface) {
 
-        return this.http.post('http://localhost/api/register', user, this.httpOptions);
+        console.log({user});
+
+        return this.http.post('http://localhost/api/register', {user}, this.httpOptions);
     }
 }

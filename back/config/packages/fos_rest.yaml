@@ -19,7 +19,5 @@ fos_rest:
         exception_controller: 'fos_rest.exception.controller:showAction'
         codes:
             Symfony\Component\HttpKernel\Exception\NotFoundHttpException: 404
-            App\User\Exception\UserNotFoundException: 401
             App\User\Exception\UserDataNotFoundException: 400
-            App\User\Exception\UserDataNotValidException: 422
 

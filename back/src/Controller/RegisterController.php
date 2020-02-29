@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Dto\UserDto;
+use App\Entity\User;
+use App\Form\Type\UserType;
 use App\User\Exception\UserDataNotFoundException;
-use App\User\Exception\UserDataNotValidException;
 use App\User\Updater\UserUpdater;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,6 @@ class RegisterController extends AbstractFOSRestController
      * @param Request $request
      * @Rest\Post("/register")
      * @return Response
-     * @throws UserDataNotValidException
      * @throws UserDataNotFoundException
      */
 
@@ -39,22 +39,22 @@ class RegisterController extends AbstractFOSRestController
     {
         $data = json_decode($request->getContent());
 
-        if (!isset($data->username) || !isset($data->email) || !isset($data->password) || !isset($data->recaptcha)) {
+        if (!isset($data->user->username) || !isset($data->user->password) || !isset($data->user->email) ||
+            !isset($data->user->recaptcha)) {
+
             throw new UserDataNotFoundException();
         }
 
         $userDto = new UserDto();
-        $userDto->setUsername($data->username)
-            ->setEmail($data->email)
-            ->setPassword($data->password)
-            ->setRecaptcha($data->recaptcha);
 
-        $this->updater->create($userDto);
+        $form = $this->createForm(UserType::class, $userDto);
+        $form->handleRequest($request);
 
-        return $this->handleView($this->view(
-            [
-                'code' => Response::HTTP_OK,
-                'message' => 'Your account was successfully created. You can now log in.'
-            ]));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = User::createFromDto($userDto);
+            $this->updater->create($user);
+        }
+
+        return $this->handleView($this->view($form));
     }
 }

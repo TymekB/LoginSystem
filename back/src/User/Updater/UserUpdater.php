@@ -34,21 +34,12 @@ class UserUpdater
     }
 
     /**
-     * @param UserDto $userDto
+     * @param User $user
      * @return bool
-     * @throws UserDataNotValidException
      */
-    public function create(UserDto $userDto)
+    public function create(User $user)
     {
-        $user = User::createFromDto($userDto);
-
-        $errors = $this->validator->validate($user);
-
-        if(count($errors)) {
-            throw new UserDataNotValidException();
-        }
-
-        $passwordHash = $this->encoder->encodePassword($user, $userDto->getPassword());
+        $passwordHash = $this->encoder->encodePassword($user, $user->getPassword());
         $user->setPassword($passwordHash);
 
         $this->em->persist($user);
