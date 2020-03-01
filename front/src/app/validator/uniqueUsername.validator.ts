@@ -11,9 +11,9 @@ export class UniqueUsernameValidator {
 
     static createValidator(userRepository: UserRepositoryService) {
         return (control: AbstractControl): Observable<any> => {
-            return userRepository.findByUsername(control.value).pipe(
+            return userRepository.find(control.value, 'username').pipe(
                 map((value: any) => {
-                    return value.data.user ? {usernameTaken: true} : null;
+                    return value.data.userFound ? {usernameTaken: true} : null;
                 }));
         };
     }

@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.http.get('http://localhost/api/test')
+        this.http.get('/api/test')
             .subscribe(response => console.log(response), error => console.log(error));
     }
 

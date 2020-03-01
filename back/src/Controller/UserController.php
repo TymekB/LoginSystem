@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
+use App\User\Exception\UserDataNotFoundException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,35 +36,27 @@ class UserController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Get("/user/find/username/{username}")
-     * @param $username
+     * @Rest\Get("/user")
+     * @param string $value
+     * @param Request $request
      * @return Response
+     * @throws UserDataNotFoundException
      */
-
-    public function findByUsername($username)
+    public function find(Request $request)
     {
-        $user = $this->userRepository->findBy(['username' => $username]);
+        $value = $request->query->get('v');
+        $findBy = $request->query->get('findBy');
+
+        if($value === null || $findBy === null || $findBy !== 'username' && $findBy !== 'email') {
+            throw new UserDataNotFoundException();
+        }
+
+        $user = $this->userRepository->findBy([$findBy => $value]);
 
         return $this->handleView($this->view(
             [
                 'code' => Response::HTTP_OK,
-                'data' => ['user' => $user ? $user : null]
-            ]));
-    }
-
-    /**
-     * @Rest\Get("/user/find/email/{email}")
-     * @param $email
-     * @return Response
-     */
-    public function findByEmail($email)
-    {
-        $user = $this->userRepository->findBy(['email' => $email]);
-
-        return $this->handleView($this->view(
-            [
-                'code' => Response::HTTP_OK,
-                'data' => ['user' => $user ? $user : null]
+                'data' => ['userFound' => (bool)$user]
             ]));
     }
 }
