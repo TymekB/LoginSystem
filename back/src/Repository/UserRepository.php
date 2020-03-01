@@ -32,30 +32,6 @@ class UserRepository extends ServiceEntityRepository
         $this->passwordEncoder = $passwordEncoder;
     }
 
-
-    /**
-     * @param string $username
-     * @param string $password
-     * @return User|null
-     * @throws UserNotFoundException
-     */
-    public function findOneByUsernameAndPassword(string $username, string $password)
-    {
-        $user = $this->findOneBy(['username' => $username]);
-
-        if(!$user) {
-            throw new UserNotFoundException();
-        }
-
-        $passwordValid = $this->passwordEncoder->isPasswordValid($user, $password);
-
-        if(!$passwordValid) {
-            throw new UserNotFoundException();
-        }
-
-        return $user;
-    }
-
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
