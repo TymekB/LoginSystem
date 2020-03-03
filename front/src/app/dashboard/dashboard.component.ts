@@ -15,6 +15,9 @@ export class DashboardComponent implements OnInit {
     ngOnInit() {
         this.http.get('/api/test')
             .subscribe(response => console.log(response), error => console.log(error));
+
+        this.http.get('/api/test')
+            .subscribe(response => console.log(response), error => console.log(error));
     }
 
 }
