@@ -22,18 +22,13 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
-
-
         this.auth.authenticateUser(this.user).subscribe((response: any) => {
             this.error = false;
 
             this.auth.setUser(response.user);
             this.router.navigate(['dashboard']);
 
-        }, (error) => {
-
-            console.log(error);
-
+        }, () => {
             this.error = true;
         });
     }

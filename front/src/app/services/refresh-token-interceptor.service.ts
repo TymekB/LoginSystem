@@ -16,11 +16,11 @@ export class RefreshTokenInterceptorService implements HttpInterceptor {
 
         return next.handle(req).pipe(catchError((error) => {
 
-            if (error.status !== 401) {
-                return throwError(error);
+            if (error.status === 401 && error.error.message === 'JWT Token not found') {
+                return this.handle(req, next);
             }
 
-            return this.handle(req, next);
+            return throwError(error);
         }));
     }
 
@@ -28,7 +28,8 @@ export class RefreshTokenInterceptorService implements HttpInterceptor {
 
         const refresh = await this.authService.refreshToken();
 
-        return refresh.pipe(switchMap(() => {
+        return refresh.pipe(switchMap((test) => {
+            console.log(test);
             return next.handle(req);
         })).toPromise();
     }

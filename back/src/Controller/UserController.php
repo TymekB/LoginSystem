@@ -37,7 +37,6 @@ class UserController extends AbstractFOSRestController
 
     /**
      * @Rest\Get("/user")
-     * @param string $value
      * @param Request $request
      * @return Response
      * @throws UserDataNotFoundException
