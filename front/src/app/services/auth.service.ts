@@ -22,7 +22,7 @@ export class AuthService {
         return this.http.post('http://localhost/api/login_check', user, this.httpOptions);
     }
 
-    refreshToken() {
+    refreshToken(): Observable<any> {
         return this.http.post('http://localhost/api/token/refresh', null);
     }
 

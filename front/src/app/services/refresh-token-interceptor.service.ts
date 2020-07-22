@@ -29,7 +29,6 @@ export class RefreshTokenInterceptorService implements HttpInterceptor {
         const refresh = await this.authService.refreshToken();
 
         return refresh.pipe(switchMap((test) => {
-            console.log(test);
             return next.handle(req);
         })).toPromise();
     }
